@@ -3,8 +3,7 @@ arr = "NSEW"
 
 hex = "" \
 "BB97\n" \
-"C447" \
-""
+"C447"
 
 cell_4 = '101\n000\n111'
 cell_7 = '111\n001\n111'
@@ -115,7 +114,7 @@ def direction_to_go(hex, entry, out, lalana, seen, find_out, ways):
 
 seen = []
 entry = (1, 1)
-out = (2, 1)
+out = (0, 0)
 ways = []
 (direction_to_go(hex, entry, out, "", seen, False, ways))
 print('ways')
@@ -133,7 +132,7 @@ def parse_ways(ways):
     return res
 
 caca = parse_ways(ways)
-
+print(ways)
 for x, y in caca[0][1]:
     maze = replace_01(maze, x, y, "W")
 
