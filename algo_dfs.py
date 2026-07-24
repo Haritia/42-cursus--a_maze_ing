@@ -40,42 +40,76 @@ class MazeSolver:
         # x, y = self.entry
         x, y = current
         lines = self.maze.split('\n')  #liste ana ligne
-        if (y >= len(lines) or x >= len(lines[0])):
-            return
+
+        if (y < 0 or y >= len(lines) or x < 0 or x >= len(lines[0])):
+            return None
+        
         row = lines[y].strip()
         c = row[x]
         bit = self.get_bin(c)
+
         visited_cells = visited + [(x, y)]
-        moved = False
+
+        # moved = False
+
         if self.exits == current:
             find_exit = True
+            self.path.append(f"{way}")
+            return (self.path)
+            
         if bit[0] == '0' and ((x - 1, y) not in visited_cells):
             moved = True
-            self.path_finder((x - 1, y), visited_cells, find_exit, way + f"W ({x - 1}, {y})")
+            result = self.path_finder((x - 1, y), visited_cells,
+                                      find_exit, way + "W")
+            if result is not None:
+                return result
         if bit[1] == '0' and ((x, y + 1) not in visited_cells):
             moved = True
-            self.path_finder((x, y + 1), visited_cells, find_exit, way + f"S ({x}, {y + 1})")
+            result = self.path_finder((x, y + 1), visited_cells,
+                                      find_exit, way + "S")
+            if result is not None:
+                return result
+
         if bit[2] == '0' and ((x + 1, y) not in visited_cells):
             moved = True
-            self.path_finder((x + 1, y), visited_cells, find_exit, way + f"E ({x + 1}, {y})")
+            result = self.path_finder((x + 1, y), visited_cells,
+                                      find_exit, way + "E")
+            if result is not None:
+                return result
+
         if bit[3] == '0' and ((x, y - 1) not in visited_cells):
             moved = True
-            self.path_finder((x, y - 1), visited_cells, find_exit, way + f"N ({x}, {y - 1})")
+            result = self.path_finder((x, y - 1), visited_cells,
+                                      find_exit, way + "N")
+            if result is not None:
+                return result
 
-        if moved == False and find_exit == True:
-            self.path.append(f"{way}")
-            print(self.path)
+
+        return None
+
+        # if moved == False and find_exit == True:
+        #     self.path.append(f"{way}")
+        #     return (self.path)
+        #     # print(self.path)
 
         # print(way)
         
         
-entry = (1, 1)
+entry = (2, 8)
+ext = (0, 1)
 seen = []
 find = False
 path = []
 maze = get_maze("maze.txt")
-Maze = MazeSolver(maze, entry, (2, 1), path)
-Maze.path_finder(entry, seen, find, "")
+maze_perfect = get_maze("maze_perfect.txt")
+Maze = MazeSolver(maze, entry, ext, path)
+print("===Imparfait===\n", Maze.path_finder(entry, seen, find, ""))
+print()
+
+ppath = []
+P_maze = MazeSolver(maze_perfect, entry, ext, ppath)
+print("=== Parfait ===\n", P_maze.path_finder(entry, seen, find, ""))
+print()
 
 # for c in maze:
 #     bi =Maze.get_bin(c)
