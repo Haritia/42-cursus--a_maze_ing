@@ -10,7 +10,7 @@ FLAGS = --warn-return-any\
 		--check-untyped-defs
 
 install:
-	python -m venv $(VENV)
+	python3 -m venv $(VENV)
 	$(PIP) install -r requirements.txt
 	
 run: install
