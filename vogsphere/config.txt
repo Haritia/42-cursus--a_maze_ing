@@ -1,8 +1,9 @@
+#this is a typical config file
 WIDTH=20
-HEIGHT=10
-ENTRY=1,0
-EXIT=19,9
-PERFECT=false
+HEIGHT=20
+ENTRY=12,9
+EXIT=2,0
+PERFECT=true
+OUTPUT_FILE=maze.txt
 DISPLAY=false
-SEED=45
-TRUE
+SEED=42

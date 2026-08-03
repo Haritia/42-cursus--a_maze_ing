@@ -36,8 +36,12 @@ class Solver:
         finish = board.get_cell(self.maze.exit[0], self.maze.exit[1])
 
         # check if the given start and finish are in the pattern
-        if start.pattern or finish.pattern:
-            print("\nNotice: Invalid entry/exit choice, "
+        if start.pattern:
+            print("\nNotice: Invalid entry choice, "
+                  "inside the 42 pattern: No solution\n")
+            return
+        elif finish.pattern:
+            print("\nNotice: Invalid exit choice, "
                   "inside the 42 pattern: No solution\n")
             return
 

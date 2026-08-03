@@ -54,6 +54,9 @@ def input_choice(
         os.system("clear")
         maze.display = not maze.display
         new_solution = maze.display
+        if not solve.solution:
+            print("\nNo solution available to display,"
+                  " please change entry/exit coordinates.\n")
         display = DisplayAscii(maze, color_index)
         display.display()
         display.print_menu()

@@ -27,7 +27,7 @@ PALETTES = [
         "pattern": "\033[38;5;207m",
         "solution": "\033[38;5;214m",
         "entry": "\033[48;5;14m",
-        "exit": "\033[48;5;229m"
+        "exit": "\033[48;5;148m"
     },
     {
         # Green outline
@@ -95,7 +95,7 @@ class DisplayAscii:
 
         # if maze too small, middle pattern omitted
         if not self.pattern_there:
-            print("\nNotice : too small for 42 pattern\n")
+            print("\nNotice : too small/narrow for 42 pattern.\n")
 
         # go through the grid list, one list(row) of cells at a time
         for y in range(self.maze.height):

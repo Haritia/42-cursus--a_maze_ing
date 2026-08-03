@@ -1,18 +1,18 @@
 [project]
 name = "mazegen"
 version = "1.0.0"
-description = "Library for maze generation."
+description = "Maze generation library."
 authors = [
-    {name = "tanrandr, haranivo"}
+    {name = "tanrandr"},
+    {name = "haranivo"}
 ]
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dependencies = [
     "pydantic (>=2.13.4,<3.0.0)",
     "flake8 (>=7.3.0,<8.0.0)",
-    "flake8-docstrings (>=1.7.0,<2.0.0)",
-    "mypy (>=2.3.0,<3.0.0)"
+    "mypy (>=2.3.0,<3.0.0)",
+    "flake8-docstrings (>=1.7.0,<2.0.0)"
 ]
-
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

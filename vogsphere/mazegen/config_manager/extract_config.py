@@ -56,10 +56,16 @@ def fetch_var(file_name: str) -> dict[str, Any]:
 
             # only consider key=value lines
             if "=" not in item:
+                if item not in required:
+                    print(f"{item} is useless, skipping.")
                 continue
             key, value = item.split("=", 1)
             key = key.strip()  # rids of trailing space
             value = value.strip()
+
+            # when "=" is followed by no value
+            if not value:
+                continue
 
             # check if a key-pair value has already been stored
             if key in param.keys():
@@ -67,7 +73,8 @@ def fetch_var(file_name: str) -> dict[str, Any]:
 
             # reject unknown parameters
             if key not in required:
-                raise ValueError(f"Unknown key: {key}")
+                raise ValueError(f"Unknown key: {key},"
+                                 " please remove.")
 
             # make sure ENTRY and EXIT are two int separated by a comma
             if key in ["ENTRY", "EXIT"]:
@@ -98,7 +105,7 @@ def fetch_var(file_name: str) -> dict[str, Any]:
 
         # report whatever's left
         if required:
-            raise ValueError(f"Missing config: {required}")
+            raise ValueError(f"Missing config value: {required}")
 
     # output file name must be different from config file name
     if param.get("OUTPUT_FILE") == file_name:
